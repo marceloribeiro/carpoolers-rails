@@ -1,0 +1,22 @@
+AllCops:
+  Include:
+    - Gemfile
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/**
+    - config/**
+    - script/**
+    - lib/docs/*
+    - lib/active_shipping/*
+Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Exclude:
+    - 'Klass#method_with_large_hash'
+  Max: 20
+Metrics/AbcSize:
+  Max: 20
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - '_'
