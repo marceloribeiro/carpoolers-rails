@@ -1,0 +1,30 @@
+%nav.navbar.navbar-expand-lg.navbar-light.top-nav
+  = link_to root_path, class: 'navbar-brand' do
+    Carpoolers
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item
+        = link_to root_path, class: 'nav-link' do
+          = t('chapters')
+      %li.nav-item
+        = link_to root_path, class: 'nav-link' do
+          = t('submit_your_chapter')
+    %ul.navbar-nav.justify-content-end
+      - if user_signed_in?
+        %li.nav-item.dropdown
+          = link_to '#', id: 'navbarDropdown', class: 'nav-link dropdown-toggle', role: "button", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown" do
+            My Account
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            %a.dropdown-item{:href => "#"} Action
+            %a.dropdown-item{:href => "#"} Another action
+            .dropdown-divider
+            %a.dropdown-item{:href => "#"} Something else here
+        %li.nav-item
+          = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
+            = t('sign_out')
+      - else
+        %li.nav-item
+          = link_to new_user_session_path, class: 'nav-link' do
+            = t('sign_in')

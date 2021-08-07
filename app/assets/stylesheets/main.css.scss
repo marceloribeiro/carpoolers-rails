@@ -1,0 +1,51 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.centered {
+  text-align: center;
+}
+
+.light-bg {
+  background-color: #f2f2f2;
+}
+
+.login-container {
+  min-height: 670px;
+}
+
+.signup-conntainer {
+  min-height: 1000px;
+}
+
+.top-nav {
+  background-color: white;
+  border-bottom: 1px solid #666;
+}
+
+.sign-in-card, .sign-up-card {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  padding: 20px;
+
+  .content {
+    margin-top: 30px;
+  }
+
+  #error_explanation {
+    padding: 15px 0 1px 0;
+    margin: 0 0 25px 0;
+    color: #a00;
+    background-color: #faa;
+
+    h2 {
+      display: none;
+    }
+  }
+}

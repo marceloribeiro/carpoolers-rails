@@ -1,17 +1,28 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.container-fluid.login-container
+  .row
+    .col-md-4
+    .col-md-4.col-sm-12
+      .card.sign-in-card
+        %h2 Log in
+        .content
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'E-mail'
+            .form-group
+              = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
+              - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+                = link_to "Forgot your password?", new_password_path(resource_name)
+            .form-group
+              = f.submit "Log in", class: 'form-control btn btn-success'
+            - if devise_mapping.rememberable?
+              .form-group
+                = f.check_box :remember_me
+                = f.label :remember_me
+          .centered
+            = "- or -"
+        .content
+          .form-group
+            = render 'shared/oauth_buttons'
+        .content
+          = render "devise/shared/links"
+    .col-md-4
