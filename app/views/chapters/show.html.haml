@@ -1,0 +1,14 @@
+.container-fluid
+  .row
+    .col-1
+    .col-10
+      .container-fluid
+        .row
+          .col-9
+            %h3= @chapter.name
+            %p
+              %strong Location:
+              %i #{@chapter.city}, #{@chapter.state}
+          .col-3
+            = render 'members', chapter: @chapter
+    .col-1

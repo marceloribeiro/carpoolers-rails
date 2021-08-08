@@ -1,16 +1,20 @@
 %nav.navbar.navbar-expand-lg.navbar-light.top-nav
   = link_to root_path, class: 'navbar-brand' do
     Carpoolers
+
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
+
   #navbarSupportedContent.collapse.navbar-collapse
+
     %ul.navbar-nav.mr-auto
       %li.nav-item
-        = link_to root_path, class: 'nav-link' do
+        = link_to chapters_path, class: 'nav-link' do
           = t('chapters')
       %li.nav-item
         = link_to root_path, class: 'nav-link' do
           = t('submit_your_chapter')
+
     %ul.navbar-nav.justify-content-end
       - if user_signed_in?
         %li.nav-item.dropdown
