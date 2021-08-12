@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %tr
+      %td Start Location
+      %td End Location
+      %td Frequency
+      %td Time
+      %td Drop off
+      %td Stops
+      %td Remaining Seats
+  %tbody
+    - carpools.each do |carpool|
+      %tr
+        %td= link_to carpool.start_pickup_location.location, chapter_carpool_path(@chapter, carpool)
+        %td= carpool.end_pickup_location.location
+        %td= carpool.frequency
+        %td= carpool.start_pickup_location.pickup_time.strftime("%H:%M %p")
+        %td= carpool.end_pickup_location.dropoff_time.strftime("%H:%M %p")
+        %td= carpool.pickup_locations.count - 2
+        %td= carpool.seats_available - carpool.carpool_passengers.count

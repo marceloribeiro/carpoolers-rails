@@ -14,3 +14,27 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  startAddressListeners()
+  startTimePickerListeners()
+})
+
+
+function startAddressListeners() {
+  $('.google-location').geocomplete()
+}
+
+function startTimePickerListeners() {
+  $('.timepicker').timepicker({
+      timeFormat: 'h:mm p',
+      interval: 30,
+      minTime: '6:00am',
+      maxTime: '10:00pm',
+      defaultTime: '6',
+      startTime: '6:00',
+      dynamic: false,
+      dropdown: true,
+      scrollbar: true
+  });
+}

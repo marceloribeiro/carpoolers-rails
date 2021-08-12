@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_115848) do
+ActiveRecord::Schema.define(version: 2018_08_28_121253) do
+
+  create_table "carpool_passengers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "carpool_id"
+    t.integer "initial_pickup_location_id"
+    t.integer "final_pickup_location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carpool_id"], name: "index_carpool_passengers_on_carpool_id"
+    t.index ["final_pickup_location_id"], name: "index_carpool_passengers_on_final_pickup_location_id"
+    t.index ["initial_pickup_location_id"], name: "index_carpool_passengers_on_initial_pickup_location_id"
+    t.index ["user_id"], name: "index_carpool_passengers_on_user_id"
+  end
+
+  create_table "carpools", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "chapter_id"
+    t.integer "seats_available"
+    t.integer "frequency"
+    t.integer "weekday"
+    t.time "starts_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_carpools_on_chapter_id"
+    t.index ["user_id"], name: "index_carpools_on_user_id"
+  end
 
   create_table "chapters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -33,6 +59,17 @@ ActiveRecord::Schema.define(version: 2018_08_28_115848) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "pickup_locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "carpool_id"
+    t.time "pickup_time"
+    t.string "location"
+    t.decimal "latitude", precision: 15, scale: 10
+    t.decimal "longitude", precision: 15, scale: 10
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carpool_id"], name: "index_pickup_locations_on_carpool_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

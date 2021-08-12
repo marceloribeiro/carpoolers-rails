@@ -1,0 +1,8 @@
+%h3= chapter.name
+
+%p
+  %strong Location:
+  %i #{chapter.city}, #{chapter.state}
+
+%p
+  = link_to "Offer to Carpooling in #{@chapter.name}", new_chapter_carpool_path(@chapter)
