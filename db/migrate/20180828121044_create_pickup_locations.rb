@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePickupLocations < ActiveRecord::Migration[5.2]
   def change
     create_table :pickup_locations do |t|

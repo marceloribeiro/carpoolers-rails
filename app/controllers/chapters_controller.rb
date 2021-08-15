@@ -1,5 +1,6 @@
-class ChaptersController < ApplicationController
+# frozen_string_literal: true
 
+class ChaptersController < ApplicationController
   def index
     @chapters = Chapter.page(page).per(per_page)
   end
@@ -7,5 +8,4 @@ class ChaptersController < ApplicationController
   def show
     @chapter = Chapter.friendly.find(params[:id])
   end
-
 end

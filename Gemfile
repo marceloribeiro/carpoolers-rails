@@ -45,7 +45,7 @@ gem 'capistrano-rails', group: :development
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'rubocop'
+gem 'rubocop', '0.55.0'
 
 gem 'rubocop-rails'
 

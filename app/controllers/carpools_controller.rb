@@ -1,5 +1,6 @@
-class CarpoolsController < ApplicationController
+# frozen_string_literal: true
 
+class CarpoolsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_chapter
 
@@ -21,16 +22,21 @@ class CarpoolsController < ApplicationController
     if @carpool.valid?
       @carpool.save
       redirect_to chapter_carpool_path(@chapter, @carpool),
-        notice: 'Carpool successfully created!'
+                  notice: 'Carpool successfully created!'
     else
       render :new
     end
   end
 
-protected
+  def show
+    @carpool = Carpool.find(params[:id])
+  end
+
+  protected
 
   def find_chapter
-    @chapter = Chapter.friendly.find(params[:chapter_id]) if params[:chapter_id].present?
+    return unless params[:chapter_id].present?
+    @chapter = Chapter.friendly.find(params[:chapter_id])
   end
 
   def carpool_params
@@ -43,5 +49,4 @@ protected
       :frequency
     )
   end
-
 end

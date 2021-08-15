@@ -1,6 +1,7 @@
-class Carpool < ApplicationRecord
+# frozen_string_literal: true
 
-  enum frequency: %i[daily weekly monthly]
+class Carpool < ApplicationRecord
+  enum frequency: %i[once daily weekly monthly]
   enum weekday: %i[sunday monday tuesday wednesday thursday friday saturday]
 
   belongs_to :user
@@ -15,9 +16,17 @@ class Carpool < ApplicationRecord
 
   attr_accessor :start_location, :end_location, :start_time, :end_time
 
-  before_validation :load_initial_locations
+  before_validation :load_initial_data
 
-  scope :latest, ->{ order(created_at: :desc) }
+  scope :latest, -> { order(created_at: :desc) }
+
+  def load_initial_data
+    load_initial_locations
+    self.start_location ||= start_pickup_location.location
+    self.end_location   ||= end_pickup_location.location
+    self.start_time     ||= start_pickup_location.pickup_time
+    self.end_time       ||= start_pickup_location.dropoff_time
+  end
 
   def load_initial_locations
     self.start_pickup_location = PickupLocation.new(
@@ -32,11 +41,5 @@ class Carpool < ApplicationRecord
       start_pickup_location,
       end_pickup_location
     ]
-
-    self.start_location ||= start_pickup_location.location
-    self.end_location   ||= end_pickup_location.location
-    self.start_time     ||= start_pickup_location.pickup_time
-    self.end_time       ||= start_pickup_location.dropoff_time
   end
-
 end
