@@ -7,7 +7,7 @@ class CreateCarpoolPassengers < ActiveRecord::Migration[5.2]
       t.integer :carpool_id
       t.integer :initial_pickup_location_id
       t.integer :final_pickup_location_id
-
+      t.integer :status
       t.timestamps
     end
 

@@ -32,6 +32,27 @@ class CarpoolsController < ApplicationController
     @carpool = Carpool.find(params[:id])
   end
 
+  def edit
+    @carpool = current_user.carpools.find(params[:id])
+  end
+
+  def update
+    @carpool = current_user.carpools.find(params[:id])
+    if @carpool.update_attributes(carpool_params)
+      redirect_to chapter_carpool_path(@chapter, @carpool),
+                  notice: 'Carpool successfully updated!'
+    else
+      render :edit
+    end
+  end
+
+  def join
+    @carpool = Carpool.find(params[:id])
+    current_user.request_to_join_carpool(@carpool)
+    redirect_to chapter_carpool_path(@chapter, @carpool),
+                notice: 'Your request was successfully submitted'
+  end
+
   protected
 
   def find_chapter

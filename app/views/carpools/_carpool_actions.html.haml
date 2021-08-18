@@ -1,0 +1,12 @@
+- if owns?(@carpool)
+  %h3 Manage
+  = card('Update this Carpool',
+        link_to('Edit', edit_chapter_carpool_path(@chapter, @carpool), class: 'btn btn-success'))
+  = card('Manage Requests', render('passenger_requests', carpool: @carpool))
+- elsif joined?(@carpool)
+  %h3 Carpool Status
+  = card('My Status', @carpool.status_for_carpooler(current_user).titleize)
+- else
+  %h3 Join
+  = card('Join this Carpool',
+        link_to('Request to Join', join_chapter_carpool_path(@chapter, @carpool), class: 'btn btn-success'))

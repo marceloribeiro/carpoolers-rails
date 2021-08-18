@@ -1,0 +1,10 @@
+%h3 Carpool Details
+
+= card('Start Location', @carpool.start_pickup_location.location)
+= card('End Location', @carpool.end_pickup_location.location)
+= card('Frequency', @carpool.frequency.titleize)
+= card('Pickup At', @carpool.pickup_at)
+= card('Drop off At', @carpool.dropoff_at)
+= card('Drop off At', @carpool.dropoff_at)
+= card('Stops', @carpool.stops_count)
+= card('Slots', "#{@carpool.remaining_seats} available")

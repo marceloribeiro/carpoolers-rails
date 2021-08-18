@@ -42,4 +42,24 @@ class Carpool < ApplicationRecord
       end_pickup_location
     ]
   end
+
+  def remaining_seats
+    seats_available - carpool_passengers.approved.count
+  end
+
+  def stops_count
+    pickup_locations.count - 2
+  end
+
+  def pickup_at
+    start_pickup_location.pickup_time.strftime('%H:%M %p')
+  end
+
+  def dropoff_at
+    end_pickup_location.dropoff_time.strftime('%H:%M %p')
+  end
+
+  def status_for_carpooler(user)
+    carpool_passengers.where(user: user).first.status
+  end
 end

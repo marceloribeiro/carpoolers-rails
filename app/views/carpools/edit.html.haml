@@ -1,7 +1,10 @@
 .container-fluid
   .row
     .col-md-4
-      = render 'carpool_details'
+      %h3 Update Carpool
+      .card
+        .card-body
+          = render 'form'
     .col-md-4
       = render 'carpool_actions'
     .col-md-4
