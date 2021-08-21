@@ -1,0 +1,21 @@
+.chat-container
+  .container-fluid
+    .row
+      .col-12
+        - if @carpool.conversation.blank? || @carpool.conversation.messages.blank?
+          %p There are no messages
+        - else
+          - @carpool.conversation.messages.order(created_at: :asc).each do |m|
+            .message
+              = m.body
+
+  .container-fluid
+    .row
+      .col-12
+        .chat-form-container
+          = form_for Message.new(carpool_id: @carpool.id), remote: true do |f|
+            = f.hidden_field :carpool_id
+            .form-group
+              = f.text_area :body, rows: 3, class: 'form-control'
+            .form-group
+              = f.submit 'Send', class: 'btn btn-success'

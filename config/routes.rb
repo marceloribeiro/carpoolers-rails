@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :profiles
+  resources :messages
   resources :carpool_passengers do
     member do
       put :approve

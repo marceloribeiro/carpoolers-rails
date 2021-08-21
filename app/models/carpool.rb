@@ -6,6 +6,7 @@ class Carpool < ApplicationRecord
 
   belongs_to :user
   belongs_to :chapter
+  has_one :conversation
   has_many :pickup_locations
   has_many :carpool_passengers
   belongs_to :start_pickup_location, class_name: 'PickupLocation'
@@ -61,5 +62,10 @@ class Carpool < ApplicationRecord
 
   def status_for_carpooler(user)
     carpool_passengers.where(user: user).first.status
+  end
+
+  def load_conversation
+    return conversation if conversation.present?
+    Conversation.create!(carpool: self)
   end
 end
