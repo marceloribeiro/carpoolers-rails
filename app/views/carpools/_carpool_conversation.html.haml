@@ -1,5 +1,5 @@
 %h3 Conversation
-- if joined?(@carpool) || owns?(@carpool)
+- if approved?(@carpool) || owns?(@carpool)
   = card('Chat', render('carpools/conversation', carpool: @carpool))
 - else
   = card('Chat', 'You are not a part of this carpool.')

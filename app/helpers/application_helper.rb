@@ -12,4 +12,8 @@ module ApplicationHelper
   def joined?(carpool)
     current_user.joined_carpool?(carpool)
   end
+
+  def approved?(carpool)
+    current_user.approved_for_carpool?(carpool)
+  end
 end

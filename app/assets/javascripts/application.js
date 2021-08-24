@@ -18,6 +18,8 @@
 $(function() {
   startAddressListeners()
   startTimePickerListeners()
+  startFrequencyListener()
+  hideAllCarpoolSelectors()
 })
 
 
@@ -37,4 +39,31 @@ function startTimePickerListeners() {
       dropdown: true,
       scrollbar: true
   });
+}
+
+function hideAllCarpoolSelectors() {
+  $('.carpool-date-select').hide()
+  $('.carpool-weekday-select').hide()
+  $('.carpool-monthday-select').hide()
+}
+
+function startFrequencyListener() {
+  $('.frequency-selector').change(function() {
+    hideAllCarpoolSelectors()
+
+    switch($(this).val()) {
+      case '0':
+        $('.carpool-date-select').show()
+        break;
+      case '1':
+        console.log('daily')
+        break;
+      case '2':
+        $('.carpool-weekday-select').show()
+        break;
+      case '3':
+        $('.carpool-monthday-select').show()
+        break;
+    }
+  })
 }

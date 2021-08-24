@@ -2,7 +2,16 @@
 = form_for @carpool, url: chapter_carpools_path(@chapter, @carpool) do |f|
   .form-group
     = f.label :frequency
-    = f.select :frequency, Carpool.frequencies, {prompt: 'Select Frequency'}, class: 'form-control'
+    = f.select :frequency, Carpool.frequencies, {prompt: 'Select Frequency'}, class: 'form-control frequency-selector'
+  .form-group.carpool-date-select
+    = f.label :carpool_date
+    = f.text_field :carpool_date, type: 'date', class: 'form-control'
+  .form-group.carpool-weekday-select
+    = f.label :weekday, 'Day of week'
+    = f.select :weekday, Carpool.weekdays, {prompt: 'Select'}, class: 'form-control'
+  .form-group.carpool-monthday-select
+    = f.label :monthday, 'Day of month'
+    = f.select :monthday, (1..31).to_a, {prompt: 'Select'}, class: 'form-control'
   .form-group
     = f.label :seats_available, 'Seats available (ie. 3)'
     = f.text_field :seats_available, class: 'form-control'

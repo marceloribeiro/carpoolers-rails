@@ -8,5 +8,4 @@
   = card('My Status', @carpool.status_for_carpooler(current_user).titleize)
 - else
   %h3 Join
-  = card('Join this Carpool',
-        link_to('Request to Join', join_chapter_carpool_path(@chapter, @carpool), class: 'btn btn-success'))
+  = card('Join this Carpool', @carpool.full? ? 'No slots available' : link_to('Request to Join', join_chapter_carpool_path(@chapter, @carpool), class: 'btn btn-success'))

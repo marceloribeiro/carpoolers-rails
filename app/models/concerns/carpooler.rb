@@ -7,6 +7,10 @@ module Carpooler
     carpool.carpool_passengers.where(user: self).count.positive?
   end
 
+  def approved_for_carpool?(carpool)
+    carpool.carpool_passengers.where(user: self).first.try(:approved?)
+  end
+
   def request_to_join_carpool(carpool)
     return if joined_carpool?(carpool)
 

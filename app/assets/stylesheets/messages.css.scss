@@ -1,0 +1,35 @@
+.messages-container {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.message {
+  .message-header {
+    margin-top: 20px;
+    .left {
+      text-align: left;
+    }
+    .right {
+      text-align: right;
+      color: #aaa;
+      font-size: 0.8em;
+    }
+  }
+  .message-body {
+    border-radius: 4px;
+    background-color: #49b3f8;
+    color: white;
+    text-align: left;
+    padding: 10px;
+  }
+
+  .message-body.self {
+    background-color: #eee;
+    text-align: right;
+    color: #333;
+  }
+}
+
+.chat-form-container {
+  margin-top: 20px;
+}

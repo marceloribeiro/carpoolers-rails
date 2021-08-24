@@ -48,6 +48,10 @@ class Carpool < ApplicationRecord
     seats_available - carpool_passengers.approved.count
   end
 
+  def full?
+    !remaining_seats.positive?
+  end
+
   def stops_count
     pickup_locations.count - 2
   end

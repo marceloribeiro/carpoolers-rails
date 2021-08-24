@@ -1,5 +1,6 @@
 %h3 Carpool Details
 
+= card('User / Driver', link_to(@carpool.user.name, profile_path(@carpool.user)))
 = card('Start Location', @carpool.start_pickup_location.location)
 = card('End Location', @carpool.end_pickup_location.location)
 = card('Frequency', @carpool.frequency.titleize)
