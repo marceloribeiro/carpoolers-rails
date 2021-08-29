@@ -57,6 +57,7 @@ gem 'html2haml'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'cucumber', require: false
 end
 
 group :development do
@@ -67,8 +68,11 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
   gem 'factory_bot'
   gem 'factory_bot_rails'
+  gem 'launchy'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'

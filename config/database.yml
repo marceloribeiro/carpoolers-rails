@@ -10,7 +10,7 @@ development:
   <<: *default
   database: carpoolers_development
 
-test:
+test: &test
   <<: *default
   database: carpoolers_test
 
@@ -19,3 +19,6 @@ production:
   database: carpoolers_production
   username: carpoolers
   password: <%= ENV['CARPOOLERS_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test
