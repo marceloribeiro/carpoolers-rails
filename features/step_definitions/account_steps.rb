@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Given('I have an existing account') do
+  @user = FactoryBot.create :user
+end
+
 Given('I am on the home page') do
   page.visit '/'
 end
@@ -14,6 +18,11 @@ When('I fill in the signup form') do
   page.fill_in 'E-mail', with: 'johndoe@email.com'
   page.fill_in 'Password', with: 'change123'
   page.fill_in 'Re-enter Password', with: 'change123'
+end
+
+When('I fill in the log in form') do
+  page.fill_in 'E-mail', with: @user.email
+  page.fill_in 'Password', with: 'change123'
 end
 
 When('I press {string}') do |button_title|
