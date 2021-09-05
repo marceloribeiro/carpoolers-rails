@@ -7,6 +7,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('Rails is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require 'vcr'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -74,4 +75,10 @@ RSpec.configure do |config|
       example.run
     end
   end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'fixtures/vcr_cassettes'
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
 end

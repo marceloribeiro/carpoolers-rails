@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_185827) do
     t.string "city"
     t.string "state"
     t.string "slug"
+    t.decimal "latitude", precision: 15, scale: 10
+    t.decimal "longitude", precision: 15, scale: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_chapters_on_slug"
