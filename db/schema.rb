@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2018_08_28_185827) do
     t.integer "carpool_id"
     t.integer "initial_pickup_location_id"
     t.integer "final_pickup_location_id"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
     t.index ["carpool_id"], name: "index_carpool_passengers_on_carpool_id"
     t.index ["final_pickup_location_id"], name: "index_carpool_passengers_on_final_pickup_location_id"
     t.index ["initial_pickup_location_id"], name: "index_carpool_passengers_on_initial_pickup_location_id"
@@ -32,18 +32,18 @@ ActiveRecord::Schema.define(version: 2018_08_28_185827) do
     t.integer "seats_available"
     t.integer "frequency"
     t.integer "weekday"
+    t.integer "monthday"
     t.time "starts_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "monthday", default: 0, null: false
     t.integer "start_pickup_location_id"
     t.integer "end_pickup_location_id"
-    t.date "carpool_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["chapter_id"], name: "index_carpools_on_chapter_id"
     t.index ["user_id"], name: "index_carpools_on_user_id"
   end
 
   create_table "chapters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.string "city"
     t.string "state"

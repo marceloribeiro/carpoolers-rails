@@ -5,4 +5,5 @@ class Chapter < ApplicationRecord
   friendly_id :name, use: :slugged
 
   has_many :carpools
+  belongs_to :user
 end

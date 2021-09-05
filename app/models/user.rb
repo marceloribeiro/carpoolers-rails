@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise  :database_authenticatable, :registerable, :recoverable, :rememberable,
           :validatable # , :omniauthable
 
+  has_many :chapters
   has_many :carpools
   has_many :carpool_passengers
 

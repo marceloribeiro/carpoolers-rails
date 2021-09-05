@@ -2,5 +2,6 @@
 
 FactoryBot.define do
   factory :chapter do
+    user
   end
 end
