@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
   def per_page
     params[:per_page] || 25
   end
+
+  def current_location
+    @current_location ||= 'New York City, NY'
+  end
 end

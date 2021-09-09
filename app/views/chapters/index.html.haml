@@ -1,6 +1,13 @@
-%h2 Chapters
+%h3 Nearby Chapters
 
-.chapters-container
+%ul.chapters-container
+  = render @nearby
+
+= paginate @nearby
+
+%h3 All Chapters
+
+%ul.chapters-container
   = render @chapters
 
 = paginate @chapters

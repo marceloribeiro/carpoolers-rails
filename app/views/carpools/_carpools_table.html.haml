@@ -13,8 +13,8 @@
       %tr
         %td= link_to carpool.start_pickup_location.location, chapter_carpool_path(@chapter, carpool)
         %td= carpool.end_pickup_location.location
-        %td= carpool.frequency.titleize
-        %td= carpool.start_pickup_location.pickup_time.strftime("%H:%M %p")
-        %td= carpool.end_pickup_location.dropoff_time.strftime("%H:%M %p")
+        %td= carpool.frequency.try(:titleize)
+        %td= carpool.start_pickup_location.pickup_time.strftime("%H:%M %p") rescue ''
+        %td= carpool.end_pickup_location.dropoff_time.strftime("%H:%M %p") rescue ''
         %td= carpool.stops_count
         %td= carpool.remaining_seats

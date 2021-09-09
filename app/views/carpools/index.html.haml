@@ -8,7 +8,10 @@
             = render 'chapters/header', chapter: @chapter
 
             %h3 Carpools
-            = render 'carpools/carpools_table', carpools: @carpools
+            - if @carpools.any?
+              = render 'carpools/carpools_table', carpools: @carpools
+            - else
+              %p No carpools registered yet
 
           .col-3
             = render 'users/chapter_members', chapter: @chapter

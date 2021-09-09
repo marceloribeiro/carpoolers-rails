@@ -5,6 +5,7 @@ class ChaptersController < ApplicationController
 
   def index
     @chapters = Chapter.page(page).per(per_page)
+    @nearby = @chapters.near(current_location) if current_location.present?
   end
 
   def new

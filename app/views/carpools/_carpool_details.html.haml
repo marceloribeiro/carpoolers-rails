@@ -3,7 +3,7 @@
 = card('User / Driver', link_to(@carpool.user.name, profile_path(@carpool.user)))
 = card('Start Location', @carpool.start_pickup_location.location)
 = card('End Location', @carpool.end_pickup_location.location)
-= card('Frequency', @carpool.frequency.titleize)
+= card('Frequency', @carpool.frequency.try(:titleize))
 = card('Pickup At', @carpool.pickup_at)
 = card('Drop off At', @carpool.dropoff_at)
 = card('Drop off At', @carpool.dropoff_at)

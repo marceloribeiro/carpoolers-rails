@@ -7,8 +7,9 @@
           .col-9
             = render 'chapters/header', chapter: @chapter
 
-            %h5 Latest Carpools (#{@chapter.carpools.latest.count})
-            = render 'carpools/carpools_table', carpools: @chapter.carpools.latest
+            - if @chapter.carpools.any?
+              %h5 Latest Carpools (#{@chapter.carpools.latest.count})
+              = render 'carpools/carpools_table', carpools: @chapter.carpools.latest
 
           .col-3
             = render 'users/chapter_members', chapter: @chapter
