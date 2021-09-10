@@ -44,12 +44,14 @@ class Carpool < ApplicationRecord
       pickup_locations.order(sorting_index: :asc).last
   end
 
-  def remaining_seats
-    seats_available - carpool_passengers.approved.count
-  end
+  def add_stop(options = {})
+    prior_location = options.delete(:after) || start_pickup_location
 
-  def full?
-    !remaining_seats.positive?
+    pickup_locations.where('sorting_index > ?', prior_location.sorting_index)
+                    .each(&:increment_sorting_index!)
+
+    options[:sorting_index] = prior_location.sorting_index + 1
+    pickup_locations.create!(options)
   end
 
   def stops_count
@@ -57,11 +59,19 @@ class Carpool < ApplicationRecord
   end
 
   def pickup_at
-    start_pickup_location.pickup_time.strftime('%H:%M %p')
+    start_pickup_location.arrival_time.strftime('%H:%M %p')
   end
 
   def dropoff_at
-    end_pickup_location.dropoff_time.strftime('%H:%M %p')
+    end_pickup_location.arrival_time.strftime('%H:%M %p')
+  end
+
+  def remaining_seats
+    seats_available - carpool_passengers.approved.count
+  end
+
+  def full?
+    !remaining_seats.positive?
   end
 
   def status_for_carpooler(user)
@@ -71,13 +81,5 @@ class Carpool < ApplicationRecord
   def load_conversation
     return conversation if conversation.present?
     Conversation.create!(carpool: self)
-  end
-
-  def add_stop(options = {})
-    prior_location = options.delete(:after) || start_pickup_location
-    pickup_locations.where('sorting_index > ?', prior_location.sorting_index)
-                    .each(&:increment_sorting_index!)
-    options[:sorting_index] = prior_location.sorting_index + 1
-    pickup_locations.create!(options)
   end
 end
