@@ -3,14 +3,6 @@
 module Carpooler
   include ActiveSupport::Concern
 
-  def joined_carpool?(carpool)
-    carpool.carpool_passengers.where(user: self).count.positive?
-  end
-
-  def approved_for_carpool?(carpool)
-    carpool.carpool_passengers.where(user: self).first.try(:approved?)
-  end
-
   def request_to_join_carpool(carpool)
     return if joined_carpool?(carpool)
 
@@ -18,8 +10,20 @@ module Carpooler
     carpool.carpool_passengers.create!(
       user: self,
       status: CarpoolPassenger.statuses[:requested],
-      initial_pickup_location: carpool.start_pickup_location,
-      final_pickup_location: carpool.end_pickup_location
+      pickup_location: carpool.start_pickup_location,
+      dropoff_location: carpool.end_pickup_location
     )
+  end
+
+  def passenger_for(carpool)
+    carpool.carpool_passengers.where(user: self).first
+  end
+
+  def joined_carpool?(carpool)
+    passenger_for(carpool).present?
+  end
+
+  def approved_for_carpool?(carpool)
+    passenger_for(carpool).try(:approved?)
   end
 end

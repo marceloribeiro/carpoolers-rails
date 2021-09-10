@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 2018_08_28_185827) do
   create_table "carpool_passengers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "carpool_id"
-    t.integer "initial_pickup_location_id"
-    t.integer "final_pickup_location_id"
+    t.integer "pickup_location_id"
+    t.integer "dropoff_location_id"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["carpool_id"], name: "index_carpool_passengers_on_carpool_id"
-    t.index ["final_pickup_location_id"], name: "index_carpool_passengers_on_final_pickup_location_id"
-    t.index ["initial_pickup_location_id"], name: "index_carpool_passengers_on_initial_pickup_location_id"
+    t.index ["dropoff_location_id"], name: "index_carpool_passengers_on_dropoff_location_id"
+    t.index ["pickup_location_id"], name: "index_carpool_passengers_on_pickup_location_id"
     t.index ["user_id"], name: "index_carpool_passengers_on_user_id"
   end
 

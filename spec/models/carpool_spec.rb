@@ -62,8 +62,8 @@ RSpec.describe Carpool, type: :model do
       subject.save
       subject.carpool_passengers.create!(
         user: passenger_a,
-        initial_pickup_location: subject.start_pickup_location,
-        final_pickup_location: subject.end_pickup_location,
+        pickup_location: subject.start_pickup_location,
+        dropoff_location: subject.end_pickup_location,
         status: CarpoolPassenger.statuses[:approved]
       )
     end
@@ -75,8 +75,8 @@ RSpec.describe Carpool, type: :model do
     it 'should return if full' do
       subject.carpool_passengers.create!(
         user: passenger_b,
-        initial_pickup_location: subject.start_pickup_location,
-        final_pickup_location: subject.end_pickup_location,
+        pickup_location: subject.start_pickup_location,
+        dropoff_location: subject.end_pickup_location,
         status: CarpoolPassenger.statuses[:approved]
       )
       expect(subject).to be_full

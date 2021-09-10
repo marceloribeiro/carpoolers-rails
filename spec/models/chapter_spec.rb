@@ -10,6 +10,12 @@ RSpec.describe Chapter, type: :model do
     it { is_expected.to have_many(:carpools) }
   end
 
+  context 'full location' do
+    it 'should return the full location' do
+      expect(subject.location).to eql('Mountain House, CA, United States')
+    end
+  end
+
   context 'when saving', vcr: true do
     it 'should geolocate and store latitude, longitude' do
       subject.save
