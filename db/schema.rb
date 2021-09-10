@@ -84,11 +84,11 @@ ActiveRecord::Schema.define(version: 2018_08_28_185827) do
 
   create_table "pickup_locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "carpool_id"
-    t.time "pickup_time"
-    t.time "dropoff_time"
+    t.time "arrival_time"
     t.string "location"
     t.decimal "latitude", precision: 15, scale: 10
     t.decimal "longitude", precision: 15, scale: 10
+    t.integer "sorting_index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["carpool_id"], name: "index_pickup_locations_on_carpool_id"

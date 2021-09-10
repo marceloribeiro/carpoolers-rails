@@ -23,21 +23,25 @@ class Carpool < ApplicationRecord
     self.pickup_locations = [
       PickupLocation.new(
         location: start_location,
-        pickup_time: start_time
+        arrival_time: start_time,
+        sorting_index: 1
       ),
       PickupLocation.new(
         location: end_location,
-        dropoff_time: end_time
+        arrival_time: end_time,
+        sorting_index: 2
       )
     ]
   end
 
   def start_pickup_location
-    pickup_locations.order(pickup_time: :asc).first
+    @start_pickup_location ||=
+      pickup_locations.order(sorting_index: :asc).first
   end
 
   def end_pickup_location
-    pickup_locations.order(pickup_time: :asc).last
+    @end_pickup_location ||=
+      pickup_locations.order(sorting_index: :asc).last
   end
 
   def remaining_seats
@@ -67,5 +71,13 @@ class Carpool < ApplicationRecord
   def load_conversation
     return conversation if conversation.present?
     Conversation.create!(carpool: self)
+  end
+
+  def add_stop(options = {})
+    prior_location = options.delete(:after) || start_pickup_location
+    pickup_locations.where('sorting_index > ?', prior_location.sorting_index)
+                    .each(&:increment_sorting_index!)
+    options[:sorting_index] = prior_location.sorting_index + 1
+    pickup_locations.create!(options)
   end
 end

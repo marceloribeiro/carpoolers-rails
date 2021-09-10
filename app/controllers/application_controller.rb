@@ -19,6 +19,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_location
-    @current_location ||= 'New York City, NY'
+    return @current_location if @current_location.present?
+    data = Geocoder.search(request.ip).first.data
+
+    @current_location = [
+      data['city'],
+      data['region'],
+      data['country']
+    ].compact.join(', ')
   end
 end
