@@ -10,5 +10,5 @@ if %w[development test].include? Rails.env
   require 'cucumber/rake/task'
   RuboCop::RakeTask.new
   task(:default).clear
-  task default: %i[rubocop spec cucumber]
+  task default: %i[spec cucumber]
 end

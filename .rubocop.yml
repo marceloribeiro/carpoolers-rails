@@ -1,6 +1,7 @@
 AllCops:
   Include:
     - Gemfile
+    - Capfile
     - Rakefile
     - config.ru
   Exclude:
