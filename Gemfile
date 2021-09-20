@@ -55,6 +55,8 @@ gem 'haml-rails'
 
 gem 'html2haml'
 
+gem 'sidekiq'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'cucumber', require: false
