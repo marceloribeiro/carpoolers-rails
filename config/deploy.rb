@@ -7,6 +7,7 @@ set :repo_url,      'git@github.com:marcelorocks/carpoolers-rails.git'
 set :branch,        ENV['BRANCH'] if ENV['BRANCH']
 set :deploy_to,     '/home/ubuntu/carpoolers'
 set :ruby_version,  '2.5.1'
+set :linked_files, ['config/master.key']
 
 namespace :deploy do
 
