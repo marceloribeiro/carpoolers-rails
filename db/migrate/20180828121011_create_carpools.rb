@@ -9,7 +9,8 @@ class CreateCarpools < ActiveRecord::Migration[5.2]
       t.integer :frequency
       t.integer :weekday
       t.integer :monthday
-      t.time :starts_at
+      t.date    :carpool_date
+      t.time    :starts_at
       t.integer :start_pickup_location_id
       t.integer :end_pickup_location_id
       t.timestamps

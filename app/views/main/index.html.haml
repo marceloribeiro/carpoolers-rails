@@ -1,1 +1,5 @@
 %h1 Welcome to Carpoolers
+
+- if user_signed_in?
+  %h3 My Carpools
+  = render 'carpools/carpools_table', carpools: current_user.carpools

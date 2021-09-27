@@ -11,7 +11,7 @@
   %tbody
     - carpools.each do |carpool|
       %tr
-        %td= link_to carpool.start_pickup_location.location, chapter_carpool_path(@chapter, carpool)
+        %td= link_to carpool.start_pickup_location.location, chapter_carpool_path(carpool.chapter, carpool)
         %td= carpool.end_pickup_location.location
         %td= carpool.frequency.try(:titleize)
         %td= carpool.start_pickup_location.pickup_time.strftime("%H:%M %p") rescue ''

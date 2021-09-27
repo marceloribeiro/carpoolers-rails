@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_185827) do
     t.integer "frequency"
     t.integer "weekday"
     t.integer "monthday"
+    t.date "carpool_date"
     t.time "starts_at"
     t.integer "start_pickup_location_id"
     t.integer "end_pickup_location_id"

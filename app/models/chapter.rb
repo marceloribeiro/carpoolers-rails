@@ -8,10 +8,15 @@ class Chapter < ApplicationRecord
   belongs_to :user
 
   geocoded_by :location
+  before_validation :load_name
   after_validation :geocode
 
   def country
     'United States'
+  end
+
+  def load_name
+    self.name ||= "#{city}, #{state}"
   end
 
   def location
