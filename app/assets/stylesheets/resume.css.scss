@@ -1,0 +1,33 @@
+.cv-box {
+  height: 100px;
+  background-color: #4261a5;
+  color: white;
+  padding: 60px 0 5px 20px;
+  font-size: 1.4em;
+}
+
+.cv-name {
+  margin-top: 20px;
+}
+
+.cv-short-description {
+  margin: 50px 0 30px 0;
+  width: 500px;
+}
+
+.left-column {
+  padding-left: 10px;
+  border-right: 1px solid #4261a5;
+
+  .personal-info {
+    margin-top: 10px;
+  }
+}
+
+.header {
+  border-bottom: 1px solid #4261a5;
+}
+
+.experience {
+  margin-top: 20px;
+}

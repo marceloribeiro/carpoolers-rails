@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'author', to: 'resumes#index'
+
   root to: "main#index"
 
 end
